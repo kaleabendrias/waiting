@@ -3,6 +3,13 @@
 #define MAX_ARGS 64
 #define PROMPT "$"
 
+/**
+ * tokenize_input - tokenizes the commands
+ * @input: the total comm
+ * @args: args
+ * Return: Always
+ */
+
 int tokenize_input(char *input, char **args)
 {
 	int argc;
@@ -19,7 +26,12 @@ int tokenize_input(char *input, char **args)
 	return (argc);
 }
 
-int main()
+/**
+ * main - entry point
+ * Return: Always
+ */
+
+int main(void)
 {
 	char *getcom = NULL;
 	size_t n = 0;
