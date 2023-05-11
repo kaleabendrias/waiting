@@ -34,6 +34,7 @@ void exe(char **args)
 	else
 	{
 		int status;
+
 		waitpid(pid, &status, 0);
 	}
 }
