@@ -14,6 +14,10 @@
 
 void exe(char **argv);
 
-int *_strtok(char *str, const char delimiters);
+char *_strchr(const char *str, int character);
+
+char *_strtok(char *str, const char *delimiters);
+
+int _strlen(const char *arg);
 
 #endif
