@@ -17,7 +17,7 @@ int tokenize_input(char *input, char **args)
 
 	argc = 0;
 	token = _strtok(input, " \n");
-	while (token != NULL & argc < MAX_ARGS - 1)
+	while ((token != NULL) & (argc < MAX_ARGS - 1))
 	{
 		args[argc++] = token;
 		token = _strtok(NULL, " \n");
@@ -37,7 +37,6 @@ int main(void)
 	size_t n = 0;
 	ssize_t n_char;
 	char *args[MAX_ARGS];
-	int argc;
 
 	while (1)
 	{
@@ -45,7 +44,8 @@ int main(void)
 		n_char = getline(&getcom, &n, stdin);
 		if (n_char == -1)
 			break;
-		argc = tokenize_input(getcom, args);
+		tokenize_input(getcom, args);
+
 		exe(args);
 	}
 	return (0);
