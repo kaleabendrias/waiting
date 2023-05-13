@@ -14,7 +14,7 @@ void exe(char **args)
 	char *envp[] = { NULL };
 
 	command = args[0];
-	actual_command = NULL;
+	
 	actual_command = get_loc(command);
 	if (!actual_command)
 	{
@@ -26,6 +26,7 @@ void exe(char **args)
 	{
 		error_msg = "Error: No such file or directory\n";
 		write(STDOUT_FILENO, error_msg, _strlen(error_msg));
+		free(actual_command);
 		return;
 	}
 	pid  = fork();
@@ -45,4 +46,6 @@ void exe(char **args)
 
 		waitpid(pid, &status, 0);
 	}
+	
+	free(actual_command);
 }

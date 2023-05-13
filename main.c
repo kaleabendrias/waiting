@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
 			exe(args);
 		}
 	}
+	free(getcom);
 	return (0);
 }
 
