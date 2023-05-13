@@ -8,13 +8,22 @@
 
 void exe(char **args)
 {
-	char *command;
+	char *command, *actual_command;
 	char *error_msg;
 	pid_t pid;
 	char *envp[] = { NULL };
 
 	command = args[0];
-	if (access(command, X_OK) == -1)
+	actual_command = NULL;
+	actual_command = get_loc(command);
+	printf("%s\n", actual_command);
+	if (!actual_command)
+	{
+		error_msg = "Error: Command not found\n";
+		write(STDOUT_FILENO, error_msg, _strlen(error_msg));
+		return;
+	}
+	if (access(actual_command, X_OK) == -1)
 	{
 		error_msg = "Error: No such file or directory\n";
 		write(STDOUT_FILENO, error_msg, _strlen(error_msg));
@@ -23,7 +32,7 @@ void exe(char **args)
 	pid  = fork();
 	if (pid == 0)
 	{
-		if (execve(command, args, envp) == -1)
+		if (execve(actual_command, args, envp) == -1)
 		{
 			perror("ERROR:");
 			exit(EXIT_FAILURE);
