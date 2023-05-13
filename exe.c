@@ -16,7 +16,6 @@ void exe(char **args)
 	command = args[0];
 	actual_command = NULL;
 	actual_command = get_loc(command);
-	printf("%s\n", actual_command);
 	if (!actual_command)
 	{
 		error_msg = "Error: Command not found\n";
