@@ -81,3 +81,45 @@ int _strlen(const char *arg)
 	}
 	return (len);
 }
+
+/**
+ * _strcpy - main
+ * @dest: destination
+ * @src: source
+ * Return: none
+ */
+
+void _strcpy(char *dest, const char *src)
+{
+	int i = 0;
+
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+}
+
+/**
+ * _strcat - does function of strcat
+ * @dest: destination
+ * @src: source
+ * Return: none
+ */
+
+void _strcat(char *dest, const char *src)
+{
+	int dest_len, i;
+
+	dest_len = 0;
+	while (dest[dest_len] != '\0')
+		dest_len++;
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[dest_len + i] = src[i];
+		i++;
+	}
+	dest[dest_len + i] = '\0';
+}
