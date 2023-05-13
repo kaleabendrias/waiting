@@ -29,38 +29,35 @@ char *_strchr(const char *str, int character)
  * Return: always
  */
 
-char *_strtok(char *s, const char *d)
-{
-	static char *next_t;
-	char *token_s, *token_e;
+char *_strtok(char *str, const char *delimiters) {
+    static char *next_t = NULL;
+    char *token_s, *token_e;
 
-	next_t = NULL;
-	if (s != NULL)
-		next_t = s;
-	if (next_t == NULL || *next_t == '\0')
-		return (NULL);
-	token_s = next_t;
-	token_e = next_t;
-	while (*token_e != '\0')
-	{
-		if (_strchr(d, *token_e) != NULL)
-		{
-			*token_e = '\0';
-			next_t = token_e + 1;
-			if (*next_t != '\0')
-			{
-				return (token_s);
-			}
-			else
-			{
-				next_t = NULL;
-				return (token_s);
-			}
-		}
-		token_e++;
-	}
-	next_t = NULL;
-	return (token_s);
+
+    if (str != NULL) {
+        next_t = str;
+    }
+    if (next_t == NULL || *next_t == '\0') {
+        return NULL;
+    }
+    token_s = next_t;
+    token_e = next_t;
+
+    while (*token_e != '\0') {
+        if (_strchr(delimiters, *token_e) != NULL) {
+            *token_e = '\0';
+            next_t = token_e + 1;
+            if (*next_t != '\0') {
+                return token_s;
+            } else {
+                next_t = NULL;
+                return token_s;
+            }
+        }
+        token_e++;
+    }
+    next_t = NULL;
+    return token_s;
 }
 
 /**
