@@ -31,12 +31,13 @@ int tokenize_input(char *input, char **args)
  * Return: Always
  */
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	char *getcom = NULL;
 	size_t n = 0;
 	ssize_t n_char;
 	char *args[MAX_ARGS];
+	(void)argv;
 
 	while (1)
 	{
@@ -44,9 +45,11 @@ int main(void)
 		n_char = getline(&getcom, &n, stdin);
 		if (n_char == -1)
 			break;
-		tokenize_input(getcom, args);
-
-		exe(args);
+		argc = tokenize_input(getcom, args);
+		if (argc > 0)
+		{
+			exe(args);
+		}
 	}
 	return (0);
 }
