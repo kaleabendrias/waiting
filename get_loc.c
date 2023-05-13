@@ -13,7 +13,7 @@ char *get_loc(char *command)
 	struct stat buffer;
 
 	if (command == NULL || *command == '\0')
-        return NULL;
+		return (NULL);
 	path = getenv("PATH");
 	if (path)
 	{
