@@ -34,7 +34,7 @@ int tokenize_input(char *input, char **args)
 
 void handle_signal(int signal)
 {
-
+	(void)signal;
 }
 
 /**
@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 	char *args[MAX_ARGS];
 	(void)argv;
 
+	signal(SIGINT, handle_signal);
 	while (1)
 	{
 		write(STDOUT_FILENO, PROMPT, _strlen(PROMPT));
