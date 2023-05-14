@@ -27,6 +27,17 @@ int tokenize_input(char *input, char **args)
 }
 
 /**
+ * handle_sig - handles signals
+ * @signal: signal
+ * Return: none
+ */
+
+void handle_signal(int signal)
+{
+
+}
+
+/**
  * main - entry point
  * Return: Always
  */
@@ -48,6 +59,7 @@ int main(int argc, char *argv[])
 		argc = tokenize_input(getcom, args);
 		if (argc > 0)
 		{
+			signal(SIGINT, handle_signal);
 			exe(args);
 		}
 	}
