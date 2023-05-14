@@ -3,9 +3,8 @@
 /**
  * get_loc - gets full path of command
  * @command: command
- * Return: Always
+ * Return: full path of the command or NULL if not found
  */
-
 char *get_loc(char *command)
 {
     char *path, *path_copy, *path_token, *file_path;
@@ -14,6 +13,12 @@ char *get_loc(char *command)
 
     if (command == NULL || *command == '\0')
         return NULL;
+
+    if (stat(command, &buffer) == 0)
+    {
+        file_path = _strdup(command);
+        return file_path;
+    }
 
     path = getenv("PATH");
     if (path)
@@ -34,17 +39,9 @@ char *get_loc(char *command)
                 free(path_copy);
                 return file_path;
             }
-            else
-            {
-                free(file_path);
-				file_path = NULL;
-                path_token = _strtok(NULL, ":");
-            }
-        }
-        if (stat(command, &buffer) == 0)
-        {
-            free(path_copy);
-            return command;
+            free(file_path);
+            file_path = NULL;
+            path_token = _strtok(NULL, ":");
         }
         free(path_copy);
     }
