@@ -1,17 +1,34 @@
 #include "main.h"
 
+extern char **environ;
+
+/**
+ * env_ex - ex
+ * Return: none
+ */
+void env_ex(void)
+{
+	char **env, *env_line;
+	size_t env_len;
+
+	env = environ;
+	while (*env != NULL)
+	{
+		env_line = *env;
+		env_len = _strlen(env_line);
+		write(STDOUT_FILENO, env_line, env_len);
+		write(STDOUT_FILENO, "\n", 1);
+		env++;
+	}
+}
 /**
  * exe - executes argument
  * @args: argumnets
  * Return: none
  */
-
-extern char **environ;
-
 void exe(char **args)
 {
-	char *command, *actual_command, *error_msg, **env, *env_line;
-	size_t env_len;
+	char *command, *actual_command, *error_msg;
 	pid_t pid;
 	char *envp[] = { NULL };
 
@@ -23,15 +40,7 @@ void exe(char **args)
 	}
 	if (_strcmp(command, "env") == 0)
 	{
-		env = environ;
-		while (*env != NULL)
-		{
-			env_line = *env;
-			env_len = _strlen(env_line);
-			write(STDOUT_FILENO, env_line, env_len);
-			write(STDOUT_FILENO, "\n", 1);
-			env++;
-		}
+		env_ex();
 		return;
 	}
 	actual_command = get_loc(command);
@@ -60,13 +69,10 @@ void exe(char **args)
 		}
 	}
 	else if (pid < 0)
-	{
 		perror("Error:");
-	}
 	else
 	{
 		int status;
-
 		waitpid(pid, &status, 0);
 	}
 	free(actual_command);
