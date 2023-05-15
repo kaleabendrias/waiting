@@ -34,6 +34,8 @@ void exe(char **args)
 		if (execve(actual_command, args, envp) == -1)
 		{
 			perror("ERROR:");
+			free(command);
+			free(actual_command);
 			exit(EXIT_FAILURE);
 		}
 	}
