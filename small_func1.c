@@ -22,3 +22,20 @@ char *_strdup(const char *src)
 	return (dest);
 }
 
+/**
+ * _strcmp - does the function of strcmp
+ * @str1: string 1
+ * @str2: string 2
+ * Return: Always
+ */
+
+int _strcmp(const char *str1, const char *str2)
+{
+	while (*str1 && (*str1 == *str2))
+	{
+
+		str1++;
+		str2++;
+	}
+	return (*(unsigned char *) str1 - *(unsigned char *)str2);
+}
