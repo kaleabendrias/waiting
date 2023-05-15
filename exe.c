@@ -21,18 +21,52 @@ void env_ex(void)
 		env++;
 	}
 }
+
 /**
- * exe - executes argument
- * @args: argumnets
+ * execute_command - executes commands
+ * @actual_command: full path command
+ * @args: args
+ * @command: the command
  * Return: none
  */
-void exe(char **args)
+
+void execute_command(char *actual_command, char **args, char *command)
 {
-	char *command, *actual_command, *error_msg;
 	pid_t pid;
 	char *envp[] = { NULL };
+	int status;
 
-	command = args[0];
+	pid = fork();
+	if (pid == 0)
+	{
+		if (execve(actual_command, args, envp) == -1)
+		{
+			perror("Error:");
+			free(command);
+			free(actual_command);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else if (pid < 0)
+		perror("Error:");
+	else
+	{
+		waitpid(pid, &status, 0);
+	}
+	free(actual_command);
+}
+
+/**
+ * handle_command - handles the command before passing it to exec
+ * @command: command
+ * @args: args
+ * Return: none
+ */
+
+void handle_command(char *command, char **args)
+{
+	char *actual_command;
+
 	if (_strcmp(command, "exit") == 0)
 	{
 		free(command);
@@ -45,35 +79,28 @@ void exe(char **args)
 	}
 	actual_command = get_loc(command);
 	if (!actual_command)
-	{
-		error_msg = "Error: Command not found\n";
-		write(STDOUT_FILENO, error_msg, _strlen(error_msg));
-		return;
-	}
-	if (access(actual_command, X_OK) == -1)
+		write(STDOUT_FILENO, "Error: Command not found\n", 25);
+	else if (access(actual_command, X_OK) == -1)
 	{
 		free(actual_command);
-		error_msg = "Error: No such file or directory\n";
-		write(STDOUT_FILENO, error_msg, _strlen(error_msg));
-		return;
+		write(STDOUT_FILENO, "Error: No such file or directory\n", 33);
 	}
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execve(actual_command, args, envp) == -1)
-		{
-			perror("ERROR:");
-			free(command);
-			free(actual_command);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else if (pid < 0)
-		perror("Error:");
 	else
 	{
-		int status;
-		waitpid(pid, &status, 0);
+		execute_command(actual_command, args, command);
 	}
-	free(actual_command);
+}
+
+/**
+ * exe - main
+ * @args: args
+ * Return: none
+ */
+
+void exe(char **args)
+{
+	char *command;
+
+	command = args[0];
+	handle_command(command, args);
 }
