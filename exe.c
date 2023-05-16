@@ -1,13 +1,12 @@
 #include "main.h"
 
-extern char **environ;
-
 /**
  * env_ex - ex
  * Return: none
  */
 void env_ex(void)
 {
+	extern char **environ;
 	char **env, *env_line;
 	size_t env_len;
 
@@ -41,14 +40,14 @@ void execute_command(char *actual_command, char **args, char *command)
 	{
 		if (execve(actual_command, args, envp) == -1)
 		{
-			perror("Error:");
+			perror(args[0]);
 			free(command);
 			free(actual_command);
 			exit(EXIT_FAILURE);
 		}
 	}
 	else if (pid < 0)
-		perror("Error:");
+		perror(args[0]);
 	else
 	{
 		waitpid(pid, &status, 0);
