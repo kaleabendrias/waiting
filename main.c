@@ -16,11 +16,11 @@ int tokenize_input(char *input, char **args)
 	char *token;
 
 	argc = 0;
-	token = _strtok(input, " \n");
+	token = _strtok(input, " \t\n");
 	while ((token != NULL) & (argc < MAX_ARGS - 1))
 	{
 		args[argc++] = token;
-		token = _strtok(NULL, " \n");
+		token = _strtok(NULL, " \t\n");
 	}
 	args[argc] = NULL;
 	return (argc);

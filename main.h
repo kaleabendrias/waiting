@@ -19,6 +19,8 @@ char *get_loc(char *command);
 
 char *_strchr(const char *str, int character);
 
+unsigned int isDelimiter(char c, const char *delimiters);
+
 char *_strtok(char *str, const char *delimiters);
 
 int _strlen(const char *arg);

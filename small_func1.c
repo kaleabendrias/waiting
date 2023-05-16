@@ -39,3 +39,23 @@ int _strcmp(const char *str1, const char *str2)
 	}
 	return (*(unsigned char *) str1 - *(unsigned char *)str2);
 }
+
+/**
+ * isDelimiter - check if it is delimiter
+ * @c: char
+ * @delimeters: bunch of delimeters
+ * Return: Alwyas
+ */
+
+unsigned int isDelimiter(char c, const char *delimiters)
+{
+	unsigned int index;
+
+	for (index = 0; delimiters[index] != '\0'; index++)
+	{
+		if (c == delimiters[index])
+			return (1);
+	}
+	return (0);
+}
+
