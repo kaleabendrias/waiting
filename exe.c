@@ -6,7 +6,6 @@
  */
 void env_ex(void)
 {
-	extern char **environ;
 	char **env, *env_line;
 	size_t env_len;
 

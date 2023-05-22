@@ -13,6 +13,8 @@
 #include <errno.h>
 #include <signal.h>
 
+extern char **environ;
+
 void exe(char **argv);
 
 char *get_loc(char *command);
