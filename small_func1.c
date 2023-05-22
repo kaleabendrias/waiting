@@ -43,7 +43,7 @@ int _strcmp(const char *str1, const char *str2)
 /**
  * isDelimiter - check if it is delimiter
  * @c: char
- * @delimeters: bunch of delimeters
+ * @delimiters: bunch of delimeters
  * Return: Alwyas
  */
 

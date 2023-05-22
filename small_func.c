@@ -24,8 +24,8 @@ char *_strchr(const char *str, int character)
 
 /**
  * _strtok - mimics strtok
- * @s: string
- * @d: dellimiter
+ * @str: string
+ * @delimiters: delimiter
  * Return: always
  */
 

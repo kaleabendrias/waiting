@@ -27,7 +27,7 @@ int tokenize_input(char *input, char **args)
 }
 
 /**
- * handle_sig - handles signals
+ * handle_signal - handles signals
  * @signal: signal
  * Return: none
  */
@@ -39,6 +39,8 @@ void handle_signal(int signal)
 
 /**
  * main - entry point
+ * @argc: arguments
+ * @argv: pointers
  * Return: Always
  */
 
