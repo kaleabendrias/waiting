@@ -12,6 +12,8 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <signal.h>
+#define MAX_ARGS 64
+#define PROMPT "$"
 
 extern char **environ;
 
