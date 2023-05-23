@@ -17,6 +17,8 @@ extern char **environ;
 
 void exe(char **argv);
 
+int _atoi(const char *s);
+
 char *get_loc(char *command);
 
 char *_strchr(const char *str, int character);

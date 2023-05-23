@@ -64,11 +64,21 @@ void execute_command(char *actual_command, char **args, char *command)
 void handle_command(char *command, char **args)
 {
 	char *actual_command;
+	int status_code;
 
 	if (_strcmp(command, "exit") == 0)
 	{
-		free(command);
-		exit(EXIT_SUCCESS);
+		if (args[1] != NULL)
+		{
+			status_code = _atoi(args[1]);
+			free(command);
+			exit(status_code);
+		}
+		else
+		{
+			free(command);
+			exit(EXIT_SUCCESS);
+		}
 	}
 	if (_strcmp(command, "env") == 0)
 	{
