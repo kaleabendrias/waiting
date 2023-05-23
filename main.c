@@ -17,7 +17,8 @@ int tokenize_input(char *input, char **args)
 	token = _strtok(input, " \t\n");
 	while ((token != NULL) & (argc < MAX_ARGS - 1))
 	{
-		args[argc++] = token;
+		if (token[0] != '#')
+			args[argc++] = token;
 		token = _strtok(NULL, " \t\n");
 	}
 	args[argc] = NULL;
