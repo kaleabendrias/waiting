@@ -1,7 +1,5 @@
 #include "main.h"
 
-#define MAX_ARGS 64
-#define PROMPT "$"
 
 /**
  * tokenize_input - tokenizes the commands
