@@ -6,8 +6,8 @@ This project is a simple shell command-line interpreter designed in the C progra
 # Features          
 • Command Execution: Users can enter commands in the shell, and the interpreter will execute them. It supports executing both built-in commands and external programs.        
 • Built-in Commands: The shell supports a set of built-in commands such as cd (change directory), ls (list files and directories), mkdir (create a directory), rm (remove a file or directory), and exit (exit the         shell).       
-• Input/Output Redirection: Users can redirect the input and output of commands using symbols such as < (input redirection) and > (output redirection). This allows users to read input from a file or write output to a   file.            
-• Pipeline Commands: The shell supports executing a sequence of commands in a pipeline, where the output of one command is used as the input for the next command.          
+• Input/Output Redirection: Users can redirect the input and output of commands using symbols such as < (input redirection) and > (output redirection). This allows users to read input from a file or write output to a   file.(❌ Not Implemented yet)            
+• Pipeline Commands: The shell supports executing a sequence of commands in a pipeline, where the output of one command is used as the input for the next command.(❌ Not Implemented yet)        
 • Signal Handling: The shell handles signals such as Ctrl+C and Ctrl+Z to terminate or suspend the currently running command.       
 • Handle Comments: The shell can handle comments in the input by ignoring any text after the # symbol on a line.         
 • Handle Variable Replacement: The shell supports variable replacement. Users can define and use variables in commands using the $ symbol. For example, $var will be replaced with the value of the variable var.     
