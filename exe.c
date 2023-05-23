@@ -4,6 +4,7 @@
  * env_ex - ex
  * Return: none
  */
+
 void env_ex(void)
 {
 	char **env, *env_line;
