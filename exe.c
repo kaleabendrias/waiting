@@ -64,28 +64,42 @@ void execute_command(char *actual_command, char **args, char *command)
 void handle_command(char *command, char **args)
 {
 	char *actual_command;
+	int status;
 
 	if (_strcmp(command, "exit") == 0)
 	{
-		free(command);
-		exit(EXIT_SUCCESS);
+		if (args[1] != NULL)
+		{
+			status = atoi(args[1]);
+			free(command);
+			exit(status);
+		}
+		else
+		{
+			free(command);
+			exit(EXIT_SUCCESS);
+		}
 	}
-	if (_strcmp(command, "env") == 0)
-	{
+	else if (_strcmp(command, "env") == 0)
 		env_ex();
-		return;
-	}
-	actual_command = get_loc(command);
-	if (!actual_command)
-		write(STDOUT_FILENO, "Error: Command not found\n", 25);
-	else if (access(actual_command, X_OK) == -1)
-	{
-		free(actual_command);
-		write(STDOUT_FILENO, "Error: No such file or directory\n", 33);
-	}
+	else if (_strcmp(command, "setenv") == 0)
+		_setenv(args);
+	else if (_strcmp(command, "unsetenv") == 0)
+		_unsetenv(args);
+	else if (_strcmp(command, "cd") == 0)
+		cd_command(args);
 	else
 	{
-		execute_command(actual_command, args, command);
+		actual_command = get_loc(command);
+		if (!actual_command)
+			write(STDOUT_FILENO, "Error: Command not found\n", 25);
+		else if (access(actual_command, X_OK) == -1)
+		{
+			free(actual_command);
+			write(STDOUT_FILENO, "Error: No such file or directory\n", 33);
+		}
+		else
+			execute_command(actual_command, args, command);
 	}
 }
 
