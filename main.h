@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <signal.h>
+#define BUFFER_SIZE 1024
 #define MAX_ARGS 64
 #define PROMPT "$"
 
