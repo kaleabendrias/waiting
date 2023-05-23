@@ -34,5 +34,7 @@ void _strcat(char *dest, const char *src);
 char *_strdup(const char *src);
 
 int _strcmp(const char *str1, const char *str2);
-
+void _setenv(char **);
+void _unsetenv(char **);
+void cd_command(char **);
 #endif
